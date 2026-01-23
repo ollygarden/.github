@@ -1,0 +1,6 @@
+{
+  "name": "Linear Issue Sync",
+  "description": "Syncs GitHub issues to Linear with status and assignee mapping",
+  "iconName": "octicon sync",
+  "categories": ["Automation"]
+}

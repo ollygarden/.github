@@ -1,0 +1,60 @@
+# Reusable workflow for GitHub to Linear issue sync
+# This workflow can be called from any repo in the organization
+#
+# Usage in your repo's .github/workflows/linear-sync.yml:
+#
+# name: Linear Sync
+# on:
+#   issues:
+#     types: [opened, closed, reopened, labeled, assigned]
+#
+# jobs:
+#   sync:
+#     uses: ollygarden/.github/.github/workflows/linear-sync.yml@main
+#     secrets:
+#       LINEAR_API_KEY: ${{ secrets.LINEAR_API_KEY }}
+#       LINEAR_TEAM_ID: ${{ secrets.LINEAR_TEAM_ID }}
+
+name: Linear Sync (Reusable)
+
+on:
+  workflow_call:
+    secrets:
+      LINEAR_API_KEY:
+        description: "Linear API Key"
+        required: true
+      LINEAR_TEAM_ID:
+        description: "Linear Team ID"
+        required: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout .github repo
+        uses: actions/checkout@v4
+        with:
+          repository: ollygarden/.github
+          path: .github-repo
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        working-directory: .github-repo/tools/linear-sync
+        run: npm install
+
+      - name: Build
+        working-directory: .github-repo/tools/linear-sync
+        run: npm run build
+
+      - name: Run sync
+        working-directory: .github-repo/tools/linear-sync
+        env:
+          LINEAR_API_KEY: ${{ secrets.LINEAR_API_KEY }}
+          LINEAR_TEAM_ID: ${{ secrets.LINEAR_TEAM_ID }}
+          GITHUB_EVENT_PATH: ${{ github.event_path }}
+        run: npm start

@@ -1,0 +1,19 @@
+# GitHub to Linear Issue Sync
+# This workflow syncs GitHub issues to Linear
+#
+# Required secrets:
+#   - LINEAR_API_KEY: Your Linear personal API key
+#   - LINEAR_TEAM_ID: The Linear team ID where issues should be created
+
+name: Linear Sync
+
+on:
+  issues:
+    types: [opened, closed, reopened, labeled, assigned]
+
+jobs:
+  sync:
+    uses: ollygarden/.github/.github/workflows/linear-sync.yml@main
+    secrets:
+      LINEAR_API_KEY: ${{ secrets.LINEAR_API_KEY }}
+      LINEAR_TEAM_ID: ${{ secrets.LINEAR_TEAM_ID }}
