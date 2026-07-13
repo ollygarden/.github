@@ -11,8 +11,8 @@ security fixes.
 Do not report suspected vulnerabilities in a public issue, discussion, or pull request.
 
 If the affected repository has private vulnerability reporting enabled, use the **Report a
-vulnerability** button on its **Security** tab. Otherwise, email
-[Juraci Paixão Kröhling](mailto:security@ollygarden.com), CEO of OllyGarden, with:
+vulnerability** button on its **Security** tab. Otherwise, email the
+[OllyGarden security team](mailto:security@ollygarden.com) with:
 
 - the affected repository, version, commit, or component;
 - a description of the vulnerability and its potential impact;
@@ -20,6 +20,6 @@ vulnerability** button on its **Security** tab. Otherwise, email
 - any mitigations you have identified; and
 - how you would like to be credited.
 
-Juraci will coordinate the response and disclosure and will credit the reporter unless they prefer
-to remain anonymous. Give maintainers a reasonable opportunity to investigate and release a fix
-before public disclosure.
+The security team will coordinate the response and disclosure and will credit the reporter unless
+they prefer to remain anonymous. Give maintainers a reasonable opportunity to investigate and
+release a fix before public disclosure.

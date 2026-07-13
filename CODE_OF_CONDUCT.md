@@ -7,13 +7,14 @@ other project-related communication.
 
 ## Reporting
 
-Report conduct concerns privately to
-[Juraci Paixão Kröhling](mailto:oss@ollygarden.com), CEO of OllyGarden and the person responsible
-for enforcement. Do not open a public issue or pull request to report an incident.
+Report conduct concerns privately to the
+[OllyGarden open source maintainers](mailto:oss@ollygarden.com). Do not open a public issue or pull
+request to report an incident.
 
-Reports are handled by Juraci on behalf of OllyGarden, not by the CNCF Code of Conduct Committee.
-Juraci will protect the privacy and safety of reporters and affected community members to the
-extent possible while reviewing and resolving a report.
+Reports are handled by designated OllyGarden maintainers, not by the CNCF Code of Conduct
+Committee. They will protect the privacy and safety of reporters and affected community members to
+the extent possible while reviewing and resolving a report.
 
-If a report concerns Juraci, reporters may instead use GitHub's
-[Report abuse](https://support.github.com/contact/report-abuse) process for conduct on GitHub.
+If a report concerns the person handling it, the reporter may request reassignment through the same
+private channel or use GitHub's [Report abuse](https://support.github.com/contact/report-abuse)
+process for conduct on GitHub.
