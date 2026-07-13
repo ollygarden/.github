@@ -17,6 +17,9 @@ env:
 
 jobs:
   cla:
+    concurrency:
+      group: cla-signatures-${{ github.repository }}
+      cancel-in-progress: false
     runs-on: blacksmith
 
     steps:
