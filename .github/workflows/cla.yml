@@ -31,6 +31,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           path-to-signatures: signatures/cla.json
-          path-to-document: https://github.com/${{ github.repository }}/blob/${{ github.event.repository.default_branch }}/CLA.md
+          path-to-document: https://github.com/ollygarden/.github/blob/main/CLA.md
           branch: cla-signatures
           allowlist: jpkroehling,dependabot[bot],renovate[bot],github-actions[bot],coderabbitai[bot]
