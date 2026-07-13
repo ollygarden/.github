@@ -1,0 +1,36 @@
+name: Reusable CLA Assistant
+
+on:
+  workflow_call:
+
+# Callers must grant the same permissions. A reusable workflow can reduce, but
+# cannot elevate, the GITHUB_TOKEN permissions provided by its caller.
+permissions:
+  actions: write
+  contents: write
+  pull-requests: write
+  statuses: write
+
+env:
+  # GitHub Actions is removing the Node 20 runtime in fall 2026.
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  cla:
+    concurrency:
+      group: cla-signatures-${{ github.repository }}
+      cancel-in-progress: false
+    runs-on: blacksmith
+
+    steps:
+      - name: CLA Assistant
+        # Supported continuation of the archived contributor-assistant/github-action.
+        # Pinned to the immutable SHA for the v2.6.2 release.
+        uses: ribtoks/cla-github-action@f22feedd1f3f46f23fab3bc100081d349f9108af # v2.6.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          path-to-signatures: signatures/cla.json
+          path-to-document: https://github.com/${{ github.repository }}/blob/${{ github.event.repository.default_branch }}/CLA.md
+          branch: cla-signatures
+          allowlist: jpkroehling,dependabot[bot],renovate[bot],github-actions[bot],coderabbitai[bot]
