@@ -33,4 +33,4 @@ jobs:
           path-to-signatures: signatures/cla.json
           path-to-document: https://github.com/ollygarden/.github/blob/main/CLA.md
           branch: cla-signatures
-          allowlist: jpkroehling,dependabot[bot],renovate[bot],github-actions[bot],coderabbitai[bot]
+          allowlist: jpkrohling,dependabot[bot],renovate[bot],github-actions[bot],coderabbitai[bot]
