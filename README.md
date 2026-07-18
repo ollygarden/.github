@@ -26,7 +26,7 @@ action can create and update `signatures/cla.json`.
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the public contribution workflow,
-validation expectations, CLA requirement, and pull request conventions.
+validation expectations, CLA process, and pull request conventions.
 Repository maintainers and automated tools should also follow
 [AGENTS.md](AGENTS.md) when changing inherited policy or reusable workflows.
 

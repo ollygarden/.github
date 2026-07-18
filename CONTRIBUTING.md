@@ -11,8 +11,12 @@ standards, and shared workflows.
   workflow changes so maintainers can confirm the direction and rollout.
 - Report vulnerabilities privately according to the
   [security policy](SECURITY.md), never through a public issue or pull request.
-- Contributions require acceptance of the [Contributor License Agreement](CLA.md).
-  The CLA bot guides first-time contributors through signing.
+- Participating repositories require acceptance of the
+  [Contributor License Agreement](CLA.md). In those repositories, the reusable
+  CLA workflow, invoked by an event-triggered caller, guides first-time
+  contributors through signing. This repository does not currently install
+  such a caller for its own pull requests, so contributors should not expect an
+  automated CLA check here.
 
 ## Prepare a change
 
