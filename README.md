@@ -25,6 +25,40 @@ Caller workflows must handle `issue_comment` (`created`) and `pull_request_targe
 `cla-signatures` branch must remain writable and must not be protected by branch rules so the CLA
 action can create and update `signatures/cla.json`.
 
+The caller job must filter new issue comments to pull requests and to the two
+commands understood by the CLA action. A minimal caller is:
+
+```yaml
+name: CLA Assistant
+
+on:
+  issue_comment:
+    types: [created]
+  pull_request_target:
+    types: [opened, closed, synchronize]
+
+jobs:
+  cla:
+    if: >-
+      github.event_name == 'pull_request_target' ||
+      (github.event.issue.pull_request &&
+      (github.event.comment.body == 'recheck' ||
+      github.event.comment.body == 'I have read the CLA Document and I hereby sign the CLA'))
+    permissions:
+      actions: write
+      contents: write
+      pull-requests: write
+      statuses: write
+    uses: ollygarden/.github/.github/workflows/cla.yml@<40-character-commit-sha>
+```
+
+Pin the reusable workflow to an immutable commit. Runs are serialized per
+caller repository and pull request without cancelling in-progress work or
+sharing a pending slot with unrelated pull requests. The implementation pin
+does not pin the agreement text: the action links to `CLA.md` on this
+repository's `main` branch, so merged agreement changes apply to future
+signatures immediately.
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the public contribution workflow,

@@ -102,6 +102,13 @@ Reusable workflow changes need additional review of:
 - signature storage and branch behavior; and
 - the rollout needed by repositories that pin a workflow by commit SHA.
 
+The root CODEOWNERS rule requests `@jpkrohling` and `@niwoerner` for all
+changes, but the live branch rules do not require CODEOWNER approval or any
+approving review. Changes to `GOVERNANCE.md` still require project-lead
+approval under that document's own policy. The live rules require a pull
+request, linear history, squash merge, and resolved review threads; satisfy
+the applicable policy review as well as those technical minimums.
+
 This repository does not currently install an event-triggered caller for its
 own reusable CLA workflow, so contributors should not expect an automated CLA
 check on its pull requests. Maintainers review changes according to

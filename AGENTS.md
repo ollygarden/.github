@@ -41,6 +41,14 @@ an explicit licensing decision.
 - Preserve the permissions, caller contract, immutable action pin, signature
   branch, and concurrency behavior in `.github/workflows/cla.yml` unless the
   pull request specifically changes and validates that behavior.
+- CLA callers listen for `pull_request_target` lifecycle events and new
+  `issue_comment` events, but their job-level condition must admit comments
+  only for an issue that is a pull request and whose body is exactly `recheck`
+  or the documented CLA-signature statement.
+- The reusable implementation is pinned by callers, but its
+  `path-to-document` follows `CLA.md` on this repository's `main` branch. A CLA
+  text change therefore affects future signing without a caller repin and
+  needs legal/governance review on that basis.
 - Keep the organization profile concise and public-facing. Put maintainer
   details in the root README or contribution guide instead.
 - Never commit secrets, credentials, signature records, customer data, or
@@ -48,6 +56,26 @@ an explicit licensing decision.
   `cla-signatures` branch, not in this repository's default branch.
 - Do not create `.agents/skills` or `.claude/skills` unless this repository
   gains real, tracked local skills.
+
+## Current operational contracts
+
+- `.github/CODEOWNERS` requests `@jpkrohling` and `@niwoerner` for every
+  repository change. The live rules do not require CODEOWNER approval or any
+  approving review. `GOVERNANCE.md` separately requires the project lead's
+  approval for governance changes; do not treat a requested CODEOWNER as a
+  substitute for that policy.
+- The CLA concurrency key scopes runs by caller repository and pull request,
+  with issue-number and run-ID fallbacks. Runs for one pull request are
+  serialized with `cancel-in-progress: false`; unrelated pull requests do not
+  compete for one pending slot.
+- Each caller stores `signatures/cla.json` on its own unprotected
+  `cla-signatures` branch. Do not copy signature data into this repository or
+  apply default-branch rules to that storage branch.
+- `renovate.json` is global Mend Renovate configuration. Its `hostRules` entry
+  supplies the Mend credential template `{{ secrets.GO_GITHUB_TOKEN }}` to Go
+  module access on `github.com`. Never replace the template with a token or
+  change its host/type scope without validating private-module artifact
+  updates.
 
 ## Validation
 
@@ -60,7 +88,7 @@ Run the checks relevant to the files changed:
 | Reusable workflow | Parse `.github/workflows/cla.yml` as YAML and run `actionlint` when available |
 | Renovate configuration | Parse `renovate.json` as JSON and validate it with Renovate when behavior changes |
 | Organization profile | Review `profile/README.md` as public-facing content and verify its links |
-| Community policy | Check cross-document links and obtain CODEOWNER review |
+| Community policy | Check cross-document links and request CODEOWNER review; governance changes additionally require project-lead approval |
 
 For a workflow behavior change, also validate the caller event and permission
 contract documented in `README.md`. Repositories that consume the reusable
