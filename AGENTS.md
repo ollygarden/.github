@@ -14,6 +14,8 @@ changes more carefully than ordinary documentation changes.
 ## Repository map
 
 - `README.md`: repository overview and operational notes for maintainers.
+- `CONTRIBUTING.md`: organization-wide default contribution guidance, with a
+  section specifically for changes to this repository.
 - `profile/README.md`: the public OllyGarden organization profile displayed on
   GitHub.
 - `CODE_OF_CONDUCT.md`, `GOVERNANCE.md`, `SECURITY.md`, and `SUPPORT.md`:
