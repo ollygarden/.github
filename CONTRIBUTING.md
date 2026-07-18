@@ -51,6 +51,7 @@ Always run:
 
 ```bash
 git diff --check
+test -z "${BASE_SHA:-}" || git diff --check "${BASE_SHA}...HEAD"
 ```
 
 Run the target repository's documented checks for every affected language,
